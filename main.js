@@ -9,12 +9,11 @@
 const path = require('path');
 
 /**
- * Import helper function module located in the same directory
- * as this module. IAP requires the path object's join method
- * to unequivocally locate the file module.
- */
+* Import helper function module located in the same directory
+* as this module. IAP requires the path object's join method
+* to unequivocally locate the file module.
+*/
 const { getIpv4MappedIpv6Address } = require(path.join(__dirname, 'ipv6.js'));
-
 
 /*
   Import the ip-cidr npm package.
@@ -31,7 +30,6 @@ const util = require('util')
 * @property {string} ipv6 - holds ipv6 address
 */
 
-
 /**
 * Calculate and return the first host IP address from a CIDR subnet.
 * @param {string} cidrStr - The IPv4 subnet expressed
@@ -40,9 +38,22 @@ const util = require('util')
 * @return {IpAddress} - Retunrs the object with ipv4 and ipv6 strings
 */
 
+/**
+* Calculates an IPv4-mapped IPv6 address.
+* @param {string} ipv4 - An IPv4 address in dotted-quad format.
+* @return {*} (ipv6Address) - An IPv6 address string or null if a run-time problem was detected.
+*/
+
 class IpAddress {
   constructor() {
-   getFirstIpAddress(cidrStr, callback) {
+    // IAP's global log object is used to output errors, warnings, and other
+    // information to the console, IAP's log files, or a Syslog server.
+    // For more information, consult the Log Class guide on the Itential
+    // Developer Hub https://developer.itential.io/ located
+    // under Documentation -> Developer Guides -> Log Class Guide
+    log.info('Starting the IpAddress product.');
+  }
+  getFirstIpAddress(cidrStr, callback) {
 
   // Initialize return arguments for callback
   let firstIpAddress = null;
@@ -80,12 +91,6 @@ class IpAddress {
   // data as the second argument to the callback function.
   return callback(IpAddress, callbackError);
 }
-    // IAP's global log object is used to output errors, warnings, and other
-    // information to the console, IAP's log files, or a Syslog server.
-    // For more information, consult the Log Class guide on the Itential
-    // Developer Hub https://developer.itential.io/ located
-    // under Documentation -> Developer Guides -> Log Class Guide
-    log.info('Starting the IpAddress product.');
-  }
+
 }
 module.exports = new IpAddress;

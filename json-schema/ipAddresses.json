@@ -1,8 +1,7 @@
 {
   "$id": "ipAddresses",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "cidrStr",
-  "$ref": "ipAddresses#/definitions/ipv4CIDR",
+  "title": "IP Addresses",
   "description": "IP Address parameters and returned data.",
   "definitions": {
     "ipv4CIDR": {
